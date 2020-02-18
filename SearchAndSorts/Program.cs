@@ -14,9 +14,10 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            int[] array = { 2, 1, 4, 3 };
+            int[] array = { 2, 1, 6, 4, 3, 2 };
+            printArray(array);
             Sorts.InsertionSort(array);
-            Program.printArray(array);
+            printArray(array);
             Console.ReadKey();
         }
     }

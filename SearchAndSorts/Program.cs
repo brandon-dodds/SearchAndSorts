@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 namespace SearchAndSorts
 {
     class Program
@@ -15,7 +14,8 @@ namespace SearchAndSorts
         static void Main(string[] args)
         {
             int[] array = { 2, 1, 6, 4, 3, 2 };
-            Sorts.split(array);
+            array = Sorts.mergeSort(array);
+            printArray(array);
         }
     }
 }

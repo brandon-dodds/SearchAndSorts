@@ -6,7 +6,7 @@ namespace SearchAndSorts
 {
     class Sorts
     {
-        public static void bubblesort(int[] x)
+        public static void Bubblesort(int[] x)
         {
             for(int i = 0; i < x.Length - 1; i++)
             {
@@ -23,19 +23,20 @@ namespace SearchAndSorts
             }
         }
 
-        public static void insertionSort(int[] x)
+        public static void InsertionSort(int[] x)
         {
-            for(int i = 1; i < x.Length; i++)
+            int n = x.Length;
+            for (int i = 1; i < n; i++)
             {
-                int temp;
-                int index = i;
-                while(x[index] < x[index - 1] && index > 0)
+
+                int insertionValue = x[i];
+                int j = i - 1;
+                while (j >= 0 && x[j] > insertionValue)
                 {
-                    temp = x[index - 1];
-                    x[index - 1] = x[index];
-                    x[index] = temp;
-                    index--;
+                    x[j + 1] = x[j];
+                    j = j - 1;
                 }
+                x[j + 1] = insertionValue;
             }
         }
     }

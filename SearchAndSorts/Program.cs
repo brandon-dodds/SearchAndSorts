@@ -1,21 +1,23 @@
 ﻿using System;
-
+using System.Threading;
 namespace SearchAndSorts
 {
     class Program
     {
-        static void printArray(int[] array)
+        public static void printArray(int[] array)
         {
             for(int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(array[i]);
+                Console.Write($"{array[i]} ");
             }
+            Console.Write("\n");
         }
         static void Main(string[] args)
         {
-            int[] array = { 1, 2, 7, 3, 5, 1 };
-            Sorts.insertionSort(array);
-            printArray(array);
+            int[] array = { 2, 1, 4, 3 };
+            Sorts.InsertionSort(array);
+            Program.printArray(array);
+            Console.ReadKey();
         }
     }
 }

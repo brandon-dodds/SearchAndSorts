@@ -46,5 +46,28 @@ namespace SearchAndSorts
                 x[j + 1] = insertionValue;
             }
         }
+        public static void split(int[] x)
+        {
+            if ( x.Length <=2)
+            {
+                return;
+            }
+            else
+            {
+                int midpoint = x.Length / 2;
+                int[] leftSide = new int[midpoint];
+                int[] rightSide = new int[midpoint];
+                for (int i = 0; i < midpoint; i++)
+                {
+                    leftSide[i] = x[i];
+                    rightSide[i] = x[midpoint + i];
+                }
+                Program.printArray(leftSide);
+                Program.printArray(rightSide);
+                split(leftSide);
+                split(rightSide);
+            }
+        }
+
     }
 }

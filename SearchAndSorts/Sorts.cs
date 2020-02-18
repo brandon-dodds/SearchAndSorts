@@ -28,7 +28,6 @@ namespace SearchAndSorts
             int n = x.Length;
             for (int i = 1; i < n; i++)
             {
-
                 int insertionValue = x[i];
                 int j = i - 1;
                 while (j >= 0 && x[j] > insertionValue)

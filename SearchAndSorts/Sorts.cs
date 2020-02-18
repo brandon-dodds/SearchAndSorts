@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SearchAndSorts
+﻿namespace SearchAndSorts
 {
     class Sorts
     {
+        /// <summary>
+        /// This is a simple bubblesort. 
+        /// Each value is compared to the value adjacent.
+        /// If the value is greater to the one next to it, switch.
+        /// </summary>
+        /// <param name="x"> The array. </param>
+        /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
         public static void Bubblesort(int[] x, string ascOrDesc)
         {
             if (ascOrDesc == "asc")
@@ -14,14 +17,9 @@ namespace SearchAndSorts
                 {
                     for (int j = 0; j < x.Length - 1; j++)
                     {
-                        //Starting at the bottom value, if the value above is is larger. Swap them.
                         int temp;
                         if (x[j] > x[j + 1])
                         {
-                            /* This assigns the temporary to the first value,
-                             * it then switches the value with the value above
-                             * and then the value above to the temp value */
-
                             temp = x[j];
                             x[j] = x[j + 1];
                             x[j + 1] = temp;
@@ -35,63 +33,62 @@ namespace SearchAndSorts
                 {
                     for (int j = 0; j < x.Length - 1; j++)
                     {
-                        //Starting at the bottom value, if the value above is is larger. Swap them.
                         int temp;
                         if (x[j] < x[j + 1])
                         {
-                            /* This assigns the temporary to the first value,
-                             * it then switches the value with the value above
-                             * and then the value above to the temp value */
-
-                            temp = x[j + 1];
-                            x[j + 1] = x[j];
-                            x[j] = temp;
+                            temp = x[j];
+                            x[j] = x[j + 1];
+                            x[j + 1] = temp;
                         }
                     }
                 }
             }
         }
-
+        /// <summary>
+        /// This does a simple insertion sort. It gets the value at index x[i] as an insertionValue
+        /// It then checks if the value to the left of it is greater than the value, if it is,
+        /// it moves the value up one index until the value can be inserted.
+        /// </summary>
+        /// <param name="x"> The array to be passed.</param>
+        /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
         public static void InsertionSort(int[] x, string ascOrDesc)
         {
             if(ascOrDesc == "asc")
             {
                 for (int i = 1; i < x.Length; i++)
                 {
-                    /* Starting at the x[1] value as the "insertion value" with "index" being the index
-                     * to the left of the value.
-                     * While the index is greater than 0 and the value is greater than the insertion value.
-                     * Move the value to the left of itself. */
                     int insertionValue = x[i];
-                    int j = i - 1;
-                    while (j >= 0 && x[j] > insertionValue)
+                    int j = i;
+                    while (j >= 1 && x[j - 1] > insertionValue)
                     {
-                        x[j + 1] = x[j];
+                        x[j] = x[j - 1];
                         j--;
                     }
-                    x[j + 1] = insertionValue;
+                    x[j] = insertionValue;
                 }
             }
             else
             {
                 for (int i = 1; i < x.Length; i++)
                 {
-                    /* Starting at the x[1] value as the "insertion value" with "index" being the index
-                     * to the left of the value.
-                     * While the index is greater than 0 and the value is greater than the insertion value.
-                     * Move the value to the left of itself. */
                     int insertionValue = x[i];
-                    int j = i - 1;
-                    while (j >= 0 && x[j] < insertionValue)
+                    int j = i;
+                    while (j >= 1 && x[j - 1] < insertionValue)
                     {
-                        x[j + 1] = x[j];
+                        x[j] = x[j - 1];
                         j--;
                     }
-                    x[j + 1] = insertionValue;
+                    x[j] = insertionValue;
                 }
             }
         }
-        public static int[] mergeSort(int[] x)
+        /// <summary>
+        /// Splits the array into two different arrays, left and right. until it can no longer be split.
+        /// The smaller arrays are then sorted in the Merge function.
+        /// </summary>
+        /// <param name="x">The array to be sorted</param>
+        /// <returns> Returns a so</returns>
+        public static int[] MergeSort(int[] x)
         {
             if ( x.Length <= 1)
             {
@@ -116,15 +113,19 @@ namespace SearchAndSorts
                     rightSide[y] = x[i];
                     y++;
                 }
-                Program.printArray(leftSide);
-                Program.printArray(rightSide);
-                leftSide = mergeSort(leftSide);
-                rightSide = mergeSort(rightSide);
+                leftSide = MergeSort(leftSide);
+                rightSide = MergeSort(rightSide);
                 int[] result = merge(leftSide, rightSide);
                 return result;
             }
         }
 
+        /// <summary>
+        /// Takes the Left side and the right side array. Compares the two and sorts them accordingly.
+        /// </summary>
+        /// <param name="leftSide">The left side of the two arrays passed.</param>
+        /// <param name="rightSide">The right side of the two arrays passed.</param>
+        /// <returns>A resultant, sorted array</returns>
         public static int[] merge(int[] leftSide, int[] rightSide)
         {
             int resultLength = leftSide.Length + rightSide.Length;
@@ -134,6 +135,7 @@ namespace SearchAndSorts
             int indexResult = 0;
             while (indexLeft < leftSide.Length || indexRight < rightSide.Length)
             {
+                // If the left and right indexes are still not at length, comparisons can be made between the two.
                 if (indexLeft < leftSide.Length && indexRight < rightSide.Length)
                 {
                     if (leftSide[indexLeft] <= rightSide[indexRight])
@@ -149,6 +151,7 @@ namespace SearchAndSorts
                         indexResult++;
                     }
                 }
+                // No comparison can be done here as the right or left length is too large, thus fill.
                 else if (indexLeft < leftSide.Length)
                 {
                     resultArray[indexResult] = leftSide[indexLeft];

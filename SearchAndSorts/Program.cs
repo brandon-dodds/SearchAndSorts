@@ -13,9 +13,16 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            int[] array = { 2, 1, 6, 4, 3, 2 };
-            array = Sorts.mergeSort(array);
-            printArray(array);
+            Random random = new Random();
+            int amount = 5;
+            int[] unsorted = new int[amount];
+            for(int i = 0; i < amount; i++)
+            {
+                unsorted[i] = random.Next(0, 100);
+            }
+            printArray(unsorted);
+            Sorts.Bubblesort(unsorted, "asc");
+            printArray(unsorted);
         }
     }
 }

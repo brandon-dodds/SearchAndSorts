@@ -1,4 +1,7 @@
-﻿namespace SearchAndSorts
+﻿using System;
+using System.Diagnostics;
+
+namespace SearchAndSorts
 {
     class Sorts
     {

@@ -15,12 +15,13 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            int[] unsorted = { 5,4,7,2,11,14,6 };
+            int amount = 10;
+            int[] unsorted = { 6, 5, 4, 8, 7, 7, 0, 0, 3, 7 };
             printArray(unsorted);
 
             int[] sorted = Sorts.MergeSort(unsorted, "asc");
             printArray(sorted);
-            Sorts.PrintTree(unsorted, "asc");
+            printArray(Sorts.PrintTree(unsorted, "asc"));
         }
     }
 }

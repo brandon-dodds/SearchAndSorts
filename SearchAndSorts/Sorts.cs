@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
+using System.Collections.Generic;
 namespace SearchAndSorts
 {
     class Sorts
@@ -169,7 +169,7 @@ namespace SearchAndSorts
                     {
                         currentNode = currentNode.Right;
                     }
-                    else if (x[start] < currentNode.Value && currentNode.Left == null)
+                    else if (x[start] <= currentNode.Value && currentNode.Left == null)
                     {
                         currentNode.Left = new Node<int>(x[start]);
                         currentNode.Left.parentNode = currentNode;
@@ -185,11 +185,13 @@ namespace SearchAndSorts
             return firstNode;
         }
 
-        public static void PrintTree(int[] x, string ascOrDesc)
+        public static int[] PrintTree(int[] x, string ascOrDesc)
         {
             Node<int> y = MakeTree(x);
             Node<int> currentNode = y;
-            while(currentNode.Right != null || currentNode.Left != null)
+            int[] sorted = new int[x.Length];
+            int currentIndex = 0;
+            while(currentNode != null)
             {
                 while (currentNode.Left != null)
                 {
@@ -198,10 +200,12 @@ namespace SearchAndSorts
 
                 while (currentNode.parentNode != null)
                 {
-                    Console.WriteLine(currentNode.Value);
+                    sorted[currentIndex] = currentNode.Value;
+                    currentIndex++;
                     currentNode = currentNode.parentNode;
                 }
-                Console.WriteLine(currentNode.Value);
+                sorted[currentIndex] = currentNode.Value;
+                currentIndex++;
                 currentNode = currentNode.Right;
                 if(currentNode != null)
                 {
@@ -212,6 +216,7 @@ namespace SearchAndSorts
                     break;
                 }
             }
+            return sorted;
         }
     }
 }

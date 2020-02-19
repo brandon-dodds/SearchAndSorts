@@ -138,5 +138,80 @@ namespace SearchAndSorts
             }
             return resultArray;
         }
+        private class Node<T>
+        {
+            public Node<T> Left, Right, parentNode;
+            public T Value;
+            public Node(T x)
+            {
+                Value = x;
+            }
+        }
+        private static Node<int> MakeTree(int[] x)
+        {
+            Node<int> firstNode = new Node<int>(x[0]);
+            Node<int> currentNode;
+            int start = 1;
+            while (start < x.Length)
+            {
+                currentNode = firstNode;
+                bool inserted = false;
+                while (inserted == false)
+                {
+                    if (x[start] > currentNode.Value && currentNode.Right == null)
+                    {
+                        currentNode.Right = new Node<int>(x[start]);
+                        currentNode.Right.parentNode = currentNode;
+                        inserted = true;
+                        start++;
+                    }
+                    else if (x[start] > currentNode.Value && inserted == false)
+                    {
+                        currentNode = currentNode.Right;
+                    }
+                    else if (x[start] < currentNode.Value && currentNode.Left == null)
+                    {
+                        currentNode.Left = new Node<int>(x[start]);
+                        currentNode.Left.parentNode = currentNode;
+                        inserted = true;
+                        start++;
+                    }
+                    else
+                    {
+                        currentNode = currentNode.Left;
+                    }
+                }
+            }
+            return firstNode;
+        }
+
+        public static void PrintTree(int[] x, string ascOrDesc)
+        {
+            Node<int> y = MakeTree(x);
+            Node<int> currentNode = y;
+            while(currentNode.Right != null || currentNode.Left != null)
+            {
+                while (currentNode.Left != null)
+                {
+                    currentNode = currentNode.Left;
+                }
+
+                while (currentNode.parentNode != null)
+                {
+                    Console.WriteLine(currentNode.Value);
+                    currentNode = currentNode.parentNode;
+                }
+                Console.WriteLine(currentNode.Value);
+                currentNode = currentNode.Right;
+                if(currentNode != null)
+                {
+                    currentNode.parentNode = null;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
     }
 }

@@ -15,17 +15,12 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int amount = 5;
-            int[] unsorted = new int[amount];
-            for(int i = 0; i < amount; i++)
-            {
-                unsorted[i] = random.Next(0, 100);
-            }
+            int[] unsorted = { 5,4,7,2,11,14,6 };
             printArray(unsorted);
 
             int[] sorted = Sorts.MergeSort(unsorted, "asc");
             printArray(sorted);
+            Sorts.PrintTree(unsorted, "asc");
         }
     }
 }

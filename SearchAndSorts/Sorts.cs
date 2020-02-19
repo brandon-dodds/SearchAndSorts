@@ -14,38 +14,21 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
         public static void Bubblesort(int[] x, string ascOrDesc)
         {
-            if (ascOrDesc == "asc")
+            for (int i = 0; i < x.Length - 1; i++)
             {
-                for (int i = 0; i < x.Length - 1; i++)
+                for (int j = 0; j < x.Length - 1; j++)
                 {
-                    for (int j = 0; j < x.Length - 1; j++)
+                    int temp;
+                    if (ascOrDesc == "asc" ? x[j] > x[j + 1] : x[j] < x[j + 1])
                     {
-                        int temp;
-                        if (x[j] > x[j + 1])
-                        {
-                            temp = x[j];
-                            x[j] = x[j + 1];
-                            x[j + 1] = temp;
-                        }
+                        temp = x[j];
+                        x[j] = x[j + 1];
+                        x[j + 1] = temp;
                     }
                 }
             }
-            else
-            {
-                for (int i = 0; i < x.Length - 1; i++)
-                {
-                    for (int j = 0; j < x.Length - 1; j++)
-                    {
-                        int temp;
-                        if (x[j] < x[j + 1])
-                        {
-                            temp = x[j];
-                            x[j] = x[j + 1];
-                            x[j + 1] = temp;
-                        }
-                    }
-                }
-            }
+
+
         }
         /// <summary>
         /// This does a simple insertion sort. It gets the value at index x[i] as an insertionValue
@@ -56,33 +39,16 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
         public static void InsertionSort(int[] x, string ascOrDesc)
         {
-            if(ascOrDesc == "asc")
+            for (int i = 1; i < x.Length; i++)
             {
-                for (int i = 1; i < x.Length; i++)
+                int insertionValue = x[i];
+                int j = i;
+                while (ascOrDesc == "asc" ? j >= 1 && x[j - 1] > insertionValue : j >= 1 && x[j - 1] < insertionValue)
                 {
-                    int insertionValue = x[i];
-                    int j = i;
-                    while (j >= 1 && x[j - 1] > insertionValue)
-                    {
-                        x[j] = x[j - 1];
-                        j--;
-                    }
-                    x[j] = insertionValue;
+                    x[j] = x[j - 1];
+                    j--;
                 }
-            }
-            else
-            {
-                for (int i = 1; i < x.Length; i++)
-                {
-                    int insertionValue = x[i];
-                    int j = i;
-                    while (j >= 1 && x[j - 1] < insertionValue)
-                    {
-                        x[j] = x[j - 1];
-                        j--;
-                    }
-                    x[j] = insertionValue;
-                }
+                x[j] = insertionValue;
             }
         }
         /// <summary>
@@ -90,10 +56,11 @@ namespace SearchAndSorts
         /// The smaller arrays are then sorted in the Merge function.
         /// </summary>
         /// <param name="x">The array to be sorted</param>
+        /// <param name="ascOrDesc">Which way you want to asc or desc.</param>
         /// <returns> Returns a so</returns>
-        public static int[] MergeSort(int[] x)
+        public static int[] MergeSort(int[] x, string ascOrDesc)
         {
-            if ( x.Length <= 1)
+            if (x.Length <= 1)
             {
                 return x;
             }
@@ -111,14 +78,14 @@ namespace SearchAndSorts
                     leftSide[i] = x[i];
                 }
                 int y = 0;
-                for(int i = midpoint; i < x.Length; i++)
+                for (int i = midpoint; i < x.Length; i++)
                 {
                     rightSide[y] = x[i];
                     y++;
                 }
-                leftSide = MergeSort(leftSide);
-                rightSide = MergeSort(rightSide);
-                int[] result = merge(leftSide, rightSide);
+                leftSide = MergeSort(leftSide, ascOrDesc);
+                rightSide = MergeSort(rightSide, ascOrDesc);
+                int[] result = Merge(leftSide, rightSide, ascOrDesc);
                 return result;
             }
         }
@@ -128,8 +95,9 @@ namespace SearchAndSorts
         /// </summary>
         /// <param name="leftSide">The left side of the two arrays passed.</param>
         /// <param name="rightSide">The right side of the two arrays passed.</param>
+        /// <param name="ascOrDesc">Whichever way you want to sort it.</param>
         /// <returns>A resultant, sorted array</returns>
-        public static int[] merge(int[] leftSide, int[] rightSide)
+        private static int[] Merge(int[] leftSide, int[] rightSide, string ascOrDesc)
         {
             int resultLength = leftSide.Length + rightSide.Length;
             int[] resultArray = new int[resultLength];
@@ -141,7 +109,7 @@ namespace SearchAndSorts
                 // If the left and right indexes are still not at length, comparisons can be made between the two.
                 if (indexLeft < leftSide.Length && indexRight < rightSide.Length)
                 {
-                    if (leftSide[indexLeft] <= rightSide[indexRight])
+                    if (ascOrDesc == "asc" ? leftSide[indexLeft] <= rightSide[indexRight] : leftSide[indexLeft] >= rightSide[indexRight])
                     {
                         resultArray[indexResult] = leftSide[indexLeft];
                         indexLeft++;

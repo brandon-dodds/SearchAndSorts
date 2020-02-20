@@ -8,6 +8,7 @@ namespace SearchAndSorts
         /// Each value is compared to the value adjacent.
         /// If the value is greater to the one next to it, switch.
         /// </summary>
+        /// <see cref="https://en.wikipedia.org/wiki/Bubble_sort"/>
         /// <param name="x"> The array. </param>
         /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
         public static void Bubblesort(int[] x, string ascOrDesc)
@@ -33,6 +34,7 @@ namespace SearchAndSorts
         /// It then checks if the value to the left of it is greater than the value, if it is,
         /// it moves the value up one index until the value can be inserted.
         /// </summary>
+        /// <see cref="https://en.wikipedia.org/wiki/Insertion_sort"/>
         /// <param name="x"> The array to be passed.</param>
         /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
         public static void InsertionSort(int[] x, string ascOrDesc)
@@ -53,6 +55,7 @@ namespace SearchAndSorts
         /// Splits the array into two different arrays, left and right. until it can no longer be split.
         /// The smaller arrays are then sorted in the Merge function.
         /// </summary>
+        /// <see cref="https://en.wikipedia.org/wiki/Merge_sort"/>
         /// <param name="x">The array to be sorted</param>
         /// <param name="ascOrDesc">Which way you want to asc or desc.</param>
         /// <returns> Returns a so</returns>
@@ -91,6 +94,7 @@ namespace SearchAndSorts
         /// <summary>
         /// Takes the Left side and the right side array. Compares the two and sorts them accordingly.
         /// </summary>
+        /// <see cref="https://en.wikipedia.org/wiki/Merge_sort"/>
         /// <param name="leftSide">The left side of the two arrays passed.</param>
         /// <param name="rightSide">The right side of the two arrays passed.</param>
         /// <param name="ascOrDesc">Whichever way you want to sort it.</param>
@@ -175,8 +179,10 @@ namespace SearchAndSorts
                 {
                     if (x[start] > currentNode.Value && currentNode.Right == null)
                     {
-                        currentNode.Right = new Node<int>(x[start]);
-                        currentNode.Right.parentNode = currentNode;
+                        currentNode.Right = new Node<int>(x[start])
+                        {
+                            parentNode = currentNode
+                        };
                         inserted = true;
                         start++;
                     }
@@ -186,8 +192,10 @@ namespace SearchAndSorts
                     }
                     else if (x[start] <= currentNode.Value && currentNode.Left == null)
                     {
-                        currentNode.Left = new Node<int>(x[start]);
-                        currentNode.Left.parentNode = currentNode;
+                        currentNode.Left = new Node<int>(x[start])
+                        {
+                            parentNode = currentNode
+                        };
                         inserted = true;
                         start++;
                     }
@@ -202,6 +210,7 @@ namespace SearchAndSorts
         /// <summary>
         /// This does the sort of the binary tree.
         /// </summary>
+        /// <see cref="https://en.wikipedia.org/wiki/Tree_sort"/>
         /// <param name="startNode"> The parent node.</param>
         /// <param name="listToAdd"> The list to add the sorted array to.</param>
         /// <param name="ascOrDesc"> Ascending or descending. </param>

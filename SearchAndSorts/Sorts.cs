@@ -138,7 +138,7 @@ namespace SearchAndSorts
             }
             return resultArray;
         }
-        private class Node<T>
+        public class Node<T>
         {
             public Node<T> Left, Right, parentNode;
             public T Value;
@@ -146,6 +146,13 @@ namespace SearchAndSorts
             {
                 Value = x;
             }
+        }
+        public static int[] PrintTree(int[] x, string ascOrDesc)
+        {
+            Node<int> y = MakeTree(x);
+            List<int> sortedList = new List<int>();
+            BinarySort(y, sortedList, ascOrDesc);
+            return sortedList.ToArray();
         }
         private static Node<int> MakeTree(int[] x)
         {
@@ -184,39 +191,33 @@ namespace SearchAndSorts
             }
             return firstNode;
         }
-
-        public static int[] PrintTree(int[] x, string ascOrDesc)
+        
+        private static void BinarySort(Node<int> startNode, List<int> listToAdd, string ascOrDesc)
         {
-            Node<int> y = MakeTree(x);
-            Node<int> currentNode = y;
-            int[] sorted = new int[x.Length];
-            int currentIndex = 0;
-            while(currentNode != null)
+            if (ascOrDesc == "asc")
             {
-                while (currentNode.Left != null)
+                if (startNode.Left != null)
                 {
-                    currentNode = currentNode.Left;
+                    BinarySort(startNode.Left, listToAdd, ascOrDesc);
                 }
-
-                while (currentNode.parentNode != null)
+                listToAdd.Add(startNode.Value);
+                if (startNode.Right != null)
                 {
-                    sorted[currentIndex] = currentNode.Value;
-                    currentIndex++;
-                    currentNode = currentNode.parentNode;
-                }
-                sorted[currentIndex] = currentNode.Value;
-                currentIndex++;
-                currentNode = currentNode.Right;
-                if(currentNode != null)
-                {
-                    currentNode.parentNode = null;
-                }
-                else
-                {
-                    break;
+                    BinarySort(startNode.Right, listToAdd, ascOrDesc);
                 }
             }
-            return sorted;
+            else
+            {
+                if (startNode.Right != null)
+                {
+                    BinarySort(startNode.Right, listToAdd, ascOrDesc);
+                }
+                listToAdd.Add(startNode.Value);
+                if (startNode.Left != null)
+                {
+                    BinarySort(startNode.Left, listToAdd, ascOrDesc);
+                }
+            }
         }
     }
 }

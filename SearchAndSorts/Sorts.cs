@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 namespace SearchAndSorts
 {
     class Sorts

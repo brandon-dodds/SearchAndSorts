@@ -138,6 +138,10 @@ namespace SearchAndSorts
             }
             return resultArray;
         }
+        /// <summary>
+        /// The nodes needed for the tree.
+        /// </summary>
+        /// <typeparam name="T"> The type for the nodes.</typeparam>
         public class Node<T>
         {
             public Node<T> Left, Right, parentNode;
@@ -147,6 +151,12 @@ namespace SearchAndSorts
                 Value = x;
             }
         }
+        /// <summary>
+        /// This prints the tree.
+        /// </summary>
+        /// <param name="x"> The array passed.</param>
+        /// <param name="ascOrDesc"> If you want to sort in ascending or descending order. </param>
+        /// <returns> It returns the parent node. </returns>
         public static int[] PrintTree(int[] x, string ascOrDesc)
         {
             Node<int> y = MakeTree(x);
@@ -191,7 +201,12 @@ namespace SearchAndSorts
             }
             return firstNode;
         }
-        
+        /// <summary>
+        /// This does the sort of the binary tree.
+        /// </summary>
+        /// <param name="startNode"> The parent node.</param>
+        /// <param name="listToAdd"> The list to add the sorted array to.</param>
+        /// <param name="ascOrDesc"> Ascending or descending. </param>
         private static void BinarySort(Node<int> startNode, List<int> listToAdd, string ascOrDesc)
         {
             if (ascOrDesc == "asc")

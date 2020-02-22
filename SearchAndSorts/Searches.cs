@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SearchAndSorts
 {
@@ -11,13 +9,16 @@ namespace SearchAndSorts
             for(int i = 0; i < array.Length; i++)
             {
                 if(array[i] == key)
+                {
                     Console.WriteLine($"{key} found at position {i}");
+                }
             }
         }
         public static void BinarySearch(int[] array, int key)
         {
             int low = 0;
-            int high = array.Length;
+            int high = array.Length - 1;
+            bool found = false;
             while (high > low)
             {
                 int midpoint = (low + high) / 2;
@@ -26,6 +27,7 @@ namespace SearchAndSorts
                     int tempMidpoint = midpoint;
                     bool leftSideFound = false;
                     bool rightSideFound = false;
+                    found = true;
                     Console.WriteLine($"{key} found at position {midpoint}");
                     while(leftSideFound == false)
                     {
@@ -52,11 +54,17 @@ namespace SearchAndSorts
                         else
                             rightSideFound = true;
                     }
+                    break;
                 }
                 else if (array[midpoint] > key)
                     high = midpoint - 1;
                 else
-                    low = midpoint;
+                    low = midpoint + 1;
+            }
+            if (found == false)
+            {
+                Console.WriteLine("The value you wanted to search for was not found.");
+                Console.WriteLine($"The closest value is at {high} with a value of {array[high]}");
             }
         }
     }

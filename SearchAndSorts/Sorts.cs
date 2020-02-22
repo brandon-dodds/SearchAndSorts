@@ -62,9 +62,7 @@ namespace SearchAndSorts
         public static int[] MergeSort(int[] x, string ascOrDesc)
         {
             if (x.Length <= 1)
-            {
                 return x;
-            }
             else
             {
                 int midpoint = x.Length / 2;
@@ -75,9 +73,7 @@ namespace SearchAndSorts
                 else
                     rightSide = new int[midpoint + 1];
                 for (int i = 0; i < midpoint; i++)
-                {
                     leftSide[i] = x[i];
-                }
                 int y = 0;
                 for (int i = midpoint; i < x.Length; i++)
                 {
@@ -200,9 +196,7 @@ namespace SearchAndSorts
                         start++;
                     }
                     else
-                    {
                         currentNode = currentNode.Left;
-                    }
                 }
             }
             return firstNode;
@@ -219,26 +213,18 @@ namespace SearchAndSorts
             if (ascOrDesc == "asc")
             {
                 if (startNode.Left != null)
-                {
                     BinarySort(startNode.Left, listToAdd, ascOrDesc);
-                }
                 listToAdd.Add(startNode.Value);
                 if (startNode.Right != null)
-                {
                     BinarySort(startNode.Right, listToAdd, ascOrDesc);
-                }
             }
             else
             {
                 if (startNode.Right != null)
-                {
                     BinarySort(startNode.Right, listToAdd, ascOrDesc);
-                }
                 listToAdd.Add(startNode.Value);
                 if (startNode.Left != null)
-                {
                     BinarySort(startNode.Left, listToAdd, ascOrDesc);
-                }
             }
         }
     }

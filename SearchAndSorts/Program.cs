@@ -14,10 +14,16 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            int[] array = { 1, 2, 3, 4, 5 };
-            var sorted = Sorts.MergeSort(array, "asc");
-            printArray(sorted);
-            Searches.BinarySearch(sorted, 3);
+            int amount = 20;
+            int[] array = new int[amount];
+            Random random = new Random();
+            for(int i = 0; i < amount; i++)
+            {
+                array[i] = random.Next(0, 100);
+            }
+            int[] sortedArray = Sorts.InsertionSort(array, "asc");
+            printArray(sortedArray);
+            Searches.BinarySearch(sortedArray, 3);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 namespace SearchAndSorts
 {
     class Sorts
@@ -11,23 +12,29 @@ namespace SearchAndSorts
         /// <see cref="https://en.wikipedia.org/wiki/Bubble_sort"/>
         /// <param name="x"> The array. </param>
         /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
-        public static void Bubblesort(int[] x, string ascOrDesc)
+        public static int[] Bubblesort(int[] x, string ascOrDesc)
         {
-            for (int i = 0; i < x.Length - 1; i++)
+            int[] sortedArray = x;
+            int innerCounter = 0;
+            int outerCounter = 0;
+            for (int i = 0; i < sortedArray.Length - 1; i++)
             {
-                for (int j = 0; j < x.Length - 1; j++)
+                outerCounter++;
+                for (int j = 0; j < sortedArray.Length - 1; j++)
                 {
+                    innerCounter++;
                     int temp;
-                    if (ascOrDesc == "asc" ? x[j] > x[j + 1] : x[j] < x[j + 1])
+                    if (ascOrDesc == "asc" ? sortedArray[j] > sortedArray[j + 1] : sortedArray[j] < sortedArray[j + 1])
                     {
-                        temp = x[j];
-                        x[j] = x[j + 1];
-                        x[j + 1] = temp;
+                        temp = sortedArray[j];
+                        sortedArray[j] = sortedArray[j + 1];
+                        sortedArray[j + 1] = temp;
                     }
                 }
             }
-
-
+            Console.WriteLine(outerCounter);
+            Console.WriteLine(innerCounter);
+            return sortedArray;
         }
         /// <summary>
         /// This does a simple insertion sort. It gets the value at index x[i] as an insertionValue
@@ -37,19 +44,27 @@ namespace SearchAndSorts
         /// <see cref="https://en.wikipedia.org/wiki/Insertion_sort"/>
         /// <param name="x"> The array to be passed.</param>
         /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
-        public static void InsertionSort(int[] x, string ascOrDesc)
+        public static int[] InsertionSort(int[] x, string ascOrDesc)
         {
-            for (int i = 1; i < x.Length; i++)
+            int[] sortedArray = x;
+            int innerCounter = 0;
+            int outerCounter = 0;
+            for (int i = 1; i < sortedArray.Length; i++)
             {
-                int insertionValue = x[i];
+                outerCounter++;
+                int insertionValue = sortedArray[i];
                 int j = i;
-                while (ascOrDesc == "asc" ? j >= 1 && x[j - 1] > insertionValue : j >= 1 && x[j - 1] < insertionValue)
+                while (ascOrDesc == "asc" ? j >= 1 && sortedArray[j - 1] > insertionValue : j >= 1 && sortedArray[j - 1] < insertionValue)
                 {
-                    x[j] = x[j - 1];
+                    innerCounter++;
+                    sortedArray[j] = sortedArray[j - 1];
                     j--;
                 }
-                x[j] = insertionValue;
+                sortedArray[j] = insertionValue;
             }
+            Console.WriteLine(outerCounter);
+            Console.WriteLine(innerCounter);
+            return sortedArray;
         }
         /// <summary>
         /// Splits the array into two different arrays, left and right. until it can no longer be split.

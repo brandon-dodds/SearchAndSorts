@@ -4,7 +4,7 @@ namespace SearchAndSorts
 {
     class Program
     {
-        public static void printArray(int[] array)
+        public static void PrintArray(int[] array)
         {
             for(int i = 0; i < array.Length; i++)
             {
@@ -22,7 +22,7 @@ namespace SearchAndSorts
                 array[i] = random.Next(0, 100);
             }
             int[] sortedArray = Sorts.InsertionSort(array, "asc");
-            printArray(sortedArray);
+            PrintArray(sortedArray);
             Searches.BinarySearch(sortedArray, 3);
         }
     }

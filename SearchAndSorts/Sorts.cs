@@ -177,6 +177,11 @@ namespace SearchAndSorts
             BinarySort(y, sortedList, ascOrDesc);
             return sortedList.ToArray();
         }
+        /// <summary>
+        /// This makes the binary tree from an array.
+        /// </summary>
+        /// <param name="x"> takes in an array as parameter.</param>
+        /// <returns> Returns a Node of type int that is the root node.</returns>
         private static Node<int> MakeTree(int[] x)
         {
             Node<int> firstNode = new Node<int>(x[0]);

@@ -22,8 +22,13 @@ namespace SearchAndSorts
                 array[i] = random.Next(0, 100);
             }
             int[] sortedArray = Sorts.InsertionSort(array, "asc");
+            int[] sortedArray2 = Sorts.PrintTree(array, "asc");
+            int[] sortedArray3 = Sorts.MergeSort(array, "asc");
+            int[] sortedArray4 = Sorts.Bubblesort(array, "asc");
             PrintArray(sortedArray);
-            Searches.BinarySearch(sortedArray, 3);
+            PrintArray(sortedArray2);
+            PrintArray(sortedArray3);
+            PrintArray(sortedArray4);
         }
     }
 }

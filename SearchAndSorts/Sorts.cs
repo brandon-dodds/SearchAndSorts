@@ -32,8 +32,8 @@ namespace SearchAndSorts
                     }
                 }
             }
-            Console.WriteLine(outerCounter);
-            Console.WriteLine(innerCounter);
+            Console.WriteLine($"Bubblesort outer counter: {outerCounter}");
+            Console.WriteLine($"Bubblesort inner counter: {innerCounter}");
             return sortedArray;
         }
         /// <summary>
@@ -62,8 +62,8 @@ namespace SearchAndSorts
                 }
                 sortedArray[j] = insertionValue;
             }
-            Console.WriteLine(outerCounter);
-            Console.WriteLine(innerCounter);
+            Console.WriteLine($"Insertion sort outer counter: {outerCounter}");
+            Console.WriteLine($"Insertion sort inner counter: {innerCounter}");
             return sortedArray;
         }
         /// <summary>
@@ -73,7 +73,7 @@ namespace SearchAndSorts
         /// <see cref="https://en.wikipedia.org/wiki/Merge_sort"/>
         /// <param name="x">The array to be sorted</param>
         /// <param name="ascOrDesc">Which way you want to asc or desc.</param>
-        /// <returns> Returns a so</returns>
+        /// <returns> Returns a sorted array</returns>
         public static int[] MergeSort(int[] x, string ascOrDesc)
         {
             if (x.Length <= 1)

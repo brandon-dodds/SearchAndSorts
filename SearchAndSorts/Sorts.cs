@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace SearchAndSorts
 {
     class Sorts
@@ -32,8 +34,8 @@ namespace SearchAndSorts
                     }
                 }
             }
-            Console.WriteLine($"Bubblesort outer counter: {outerCounter}");
-            Console.WriteLine($"Bubblesort inner counter: {innerCounter}");
+            //Console.WriteLine($"Bubblesort outer counter: {outerCounter}");
+            //Console.WriteLine($"Bubblesort inner counter: {innerCounter}");
             return sortedArray;
         }
         /// <summary>
@@ -64,6 +66,7 @@ namespace SearchAndSorts
             }
             Console.WriteLine($"Insertion sort outer counter: {outerCounter}");
             Console.WriteLine($"Insertion sort inner counter: {innerCounter}");
+            Console.WriteLine($"{sortedArray.Length},{outerCounter},{innerCounter}");
             return sortedArray;
         }
         /// <summary>
@@ -74,6 +77,7 @@ namespace SearchAndSorts
         /// <param name="x">The array to be sorted</param>
         /// <param name="ascOrDesc">Which way you want to asc or desc.</param>
         /// <returns> Returns a sorted array</returns>
+        public static int mergesortcounter = 0;
         public static int[] MergeSort(int[] x, string ascOrDesc)
         {
             if (x.Length <= 1)
@@ -119,6 +123,7 @@ namespace SearchAndSorts
             int indexResult = 0;
             while (indexLeft < leftSide.Length || indexRight < rightSide.Length)
             {
+                mergesortcounter++;
                 // If the left and right indexes are still not at length, comparisons can be made between the two.
                 if (indexLeft < leftSide.Length && indexRight < rightSide.Length)
                 {

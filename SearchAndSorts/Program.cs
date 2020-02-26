@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace SearchAndSorts
 {
@@ -14,21 +15,21 @@ namespace SearchAndSorts
         }
         static void Main(string[] args)
         {
-            int amount = 20;
-            int[] array = new int[amount];
-            Random random = new Random();
-            for(int i = 0; i < amount; i++)
+            for (int amount = 0; amount < 2500; amount++)
             {
-                array[i] = random.Next(0, 100);
+                Sorts.mergesortcounter = 0;
+                int[] array = new int[amount + 1];
+                Random random = new Random();
+                for (int i = 0; i <= amount; i++)
+                {
+                    array[i] = random.Next(0, 100);
+                }
+                int[] sortedArray = Sorts.MergeSort(array, "asc");
+                var writer = File.AppendText("./test.csv");
+                writer.WriteLine($"{sortedArray.Length},{Sorts.mergesortcounter}");
+                writer.Close();
             }
-            int[] sortedArray = Sorts.InsertionSort(array, "asc");
-            int[] sortedArray2 = Sorts.PrintTree(array, "asc");
-            int[] sortedArray3 = Sorts.MergeSort(array, "asc");
-            int[] sortedArray4 = Sorts.Bubblesort(array, "asc");
-            PrintArray(sortedArray);
-            PrintArray(sortedArray2);
-            PrintArray(sortedArray3);
-            PrintArray(sortedArray4);
+            
         }
     }
 }

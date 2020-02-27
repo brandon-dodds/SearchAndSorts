@@ -6,12 +6,26 @@ namespace SearchAndSorts
     {
         public static void LinearSearch(int[] array, int key)
         {
+            int closestInt = default;
+            int lastClosestDiff = int.MaxValue;
+            bool valueFound = false;
             for(int i = 0; i < array.Length; i++)
             {
-                if(array[i] == key)
+                int diff = array[i] - key;
+                if (Math.Abs(diff) < lastClosestDiff)
                 {
-                    Console.WriteLine($"{key} found at position {i}");
+                    lastClosestDiff = Math.Abs(diff);
+                    closestInt = array[i];
                 }
+                if(array[i] == key)
+                { 
+                    Console.WriteLine($"{key} found at position {i}");
+                    valueFound = true;
+                }
+            }
+            if (!valueFound)
+            {
+                Console.WriteLine($"The closest value is {closestInt} with a difference of {lastClosestDiff}");
             }
         }
         public static void BinarySearch(int[] array, int key)

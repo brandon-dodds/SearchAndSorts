@@ -77,7 +77,6 @@ namespace SearchAndSorts
         /// <param name="x">The array to be sorted</param>
         /// <param name="ascOrDesc">Which way you want to asc or desc.</param>
         /// <returns> Returns a sorted array</returns>
-        public static int mergesortcounter = 0;
         public static int[] MergeSort(int[] x, string ascOrDesc)
         {
             if (x.Length <= 1)
@@ -123,7 +122,6 @@ namespace SearchAndSorts
             int indexResult = 0;
             while (indexLeft < leftSide.Length || indexRight < rightSide.Length)
             {
-                mergesortcounter++;
                 // If the left and right indexes are still not at length, comparisons can be made between the two.
                 if (indexLeft < leftSide.Length && indexRight < rightSide.Length)
                 {
@@ -235,7 +233,6 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> Ascending or descending. </param>
         private static void BinarySort(Node<int> startNode, List<int> listToAdd, string ascOrDesc)
         {
-            mergesortcounter++;
             if (ascOrDesc == "asc")
             {
                 if (startNode.Left != null)
@@ -255,3 +252,4 @@ namespace SearchAndSorts
         }
     }
 }
+

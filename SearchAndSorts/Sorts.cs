@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace SearchAndSorts
 {
@@ -196,7 +195,6 @@ namespace SearchAndSorts
                 bool inserted = false;
                 while (inserted == false)
                 {
-                    mergesortcounter++;
                     if (x[start] > currentNode.Value && currentNode.Right == null)
                     {
                         currentNode.Right = new Node<int>(x[start])

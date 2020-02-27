@@ -8,16 +8,28 @@ namespace SearchAndSorts
         public static void ArrayAnalysis(int[] array)
         {
             Console.Clear();
-            PrintArray(array);
-            Console.ReadLine();
-        }
-        public static void PrintArray(int[] array)
-        {
-            for(int i = 0; i < array.Length; i++)
+            var sortedArrayAsc = Sorts.MergeSort(array, "asc");
+            var sortedArrayDesc = Sorts.MergeSort(array, "desc");
+            Console.WriteLine("Printing every 10th value ascending...");
+            for(int i = 0; i <= 250; i+=10)
             {
-                Console.Write($"{array[i]} ");
+                Console.WriteLine($"{i}. {sortedArrayAsc[i]}");
             }
-            Console.Write("\n");
+            Console.WriteLine("Press a button to sort descending...");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Printing every 10th value descending...");
+            for (int i = 0; i <= 250; i += 10)
+            {
+                Console.WriteLine($"{i}. {sortedArrayDesc[i]}");
+            }
+            Console.WriteLine("Press a button to continue...");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Search for a value:");
+            var userIntSearch = Console.ReadLine();
+            Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+            Console.ReadLine();
         }
         static void Main()
         {

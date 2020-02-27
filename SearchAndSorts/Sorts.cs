@@ -198,6 +198,7 @@ namespace SearchAndSorts
                 bool inserted = false;
                 while (inserted == false)
                 {
+                    mergesortcounter++;
                     if (x[start] > currentNode.Value && currentNode.Right == null)
                     {
                         currentNode.Right = new Node<int>(x[start])
@@ -235,7 +236,6 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> Ascending or descending. </param>
         private static void BinarySort(Node<int> startNode, List<int> listToAdd, string ascOrDesc)
         {
-            mergesortcounter++;
             if (ascOrDesc == "asc")
             {
                 if (startNode.Left != null)

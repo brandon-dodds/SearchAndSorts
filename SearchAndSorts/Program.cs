@@ -24,9 +24,9 @@ namespace SearchAndSorts
                 {
                     array[i] = random.Next(0, 100);
                 }
-                int[] sortedArray = Sorts.MergeSort(array, "asc");
+                int[] sortedArray = Sorts.PrintTree(array, "asc");
                 var writer = File.AppendText("./test.csv");
-                writer.WriteLine($"{sortedArray.Length},{Sorts.mergesortcounter}");
+                writer.WriteLine($"{sortedArray.Length - 1},{Sorts.mergesortcounter}");
                 writer.Close();
             }
             

@@ -235,6 +235,7 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> Ascending or descending. </param>
         private static void BinarySort(Node<int> startNode, List<int> listToAdd, string ascOrDesc)
         {
+            mergesortcounter++;
             if (ascOrDesc == "asc")
             {
                 if (startNode.Left != null)

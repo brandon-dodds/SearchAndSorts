@@ -6,7 +6,6 @@ namespace SearchAndSorts
     {
         public static void LinearSearch(int[] array, int key)
         {
-            int closestInt = default;
             int lastClosestDiff = int.MaxValue;
             bool valueFound = false;
             for(int i = 0; i < array.Length; i++)
@@ -15,7 +14,6 @@ namespace SearchAndSorts
                 if (Math.Abs(diff) < lastClosestDiff)
                 {
                     lastClosestDiff = Math.Abs(diff);
-                    closestInt = array[i];
                 }
                 if(array[i] == key)
                 { 
@@ -27,21 +25,19 @@ namespace SearchAndSorts
             {
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (array[i] == closestInt)
+                    if (array[i] == key + lastClosestDiff || array[i] == key - lastClosestDiff)
                     {
                         Console.WriteLine($"The closest value is {array[i]} with a difference of {lastClosestDiff} " +
                             $"at position {i}");
                     }
-                    
                 }
             }
         }
         public static void BinarySearch(int[] array, int key)
         {
-            int closestInt = default;
             int lastClosestDiff = int.MaxValue;
             int low = 0;
-            int high = array.Length;
+            int high = array.Length - 1;
             bool found = false;
             while (high >= low)
             {
@@ -50,7 +46,6 @@ namespace SearchAndSorts
                 if (Math.Abs(diff) < lastClosestDiff)
                 {
                     lastClosestDiff = Math.Abs(diff);
-                    closestInt = array[midpoint];
                 }
                 if (array[midpoint] == key)
                 {
@@ -105,9 +100,9 @@ namespace SearchAndSorts
             }
             if (!found)
             {
-                for (int i = 0; i < array.Length - 1; i++)
+                for (int i = 0; i < array.Length; i++)
                 {
-                    if (array[i] == closestInt)
+                    if (array[i] == key + lastClosestDiff || array[i] == key - lastClosestDiff)
                     {
                         Console.WriteLine($"The closest value is {array[i]} with a difference of {lastClosestDiff} " +
                             $"at position {i}");

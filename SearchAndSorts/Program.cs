@@ -30,6 +30,7 @@ namespace SearchAndSorts
             var userIntSearch = Console.ReadLine();
             Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
             Console.ReadLine();
+            
         }
         static void Main()
         {

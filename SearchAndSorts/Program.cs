@@ -1,17 +1,26 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 namespace SearchAndSorts
 {
     class Program
     {
+        public static int[] MergeArray(int[] array1, int[] array2)
+        {
+            int[] mergedArray = new int[2 * array1.Length];
+            for(int i = 0; i < array1.Length; i++)
+            {
+                mergedArray[i] = array1[i];
+                mergedArray[i + array1.Length] = array2[i];
+            }
+            return mergedArray;
+        }
         public static void ArrayAnalysis(int[] array)
         {
             Console.Clear();
             var sortedArrayAsc = Sorts.MergeSort(array, "asc");
             var sortedArrayDesc = Sorts.MergeSort(array, "desc");
-            Console.WriteLine((array.Length == 256) ? "Printing every 10th value ascending..." : "printing every 50th value ascending...");
-            var intUp = array.Length == 256 ? 10 : 50;
+            Console.WriteLine((array.Length == 2048) ? "Printing every 50th value ascending..." : "printing every 10th value ascending...");
+            var intUp = array.Length == 2048 ? 50 : 10;
             for(int i = 0; i <= (10 * (array.Length / 10)); i+=intUp)
             {
                 Console.WriteLine($"{i}. {sortedArrayAsc[i]}");
@@ -19,7 +28,7 @@ namespace SearchAndSorts
             Console.WriteLine("Press a button to sort descending...");
             Console.ReadLine();
             Console.Clear();
-            Console.WriteLine((array.Length == 256) ? "Printing every 10th value descending..." : "printing every 50th value descending...");
+            Console.WriteLine((array.Length == 2048) ? "Printing every 50th value descending..." : "printing every 10th value descending...");
             for (int i = 0; i <= (10 * (array.Length / 10)); i += intUp)
             {
                 Console.WriteLine($"{i}. {sortedArrayDesc[i]}");
@@ -31,7 +40,6 @@ namespace SearchAndSorts
             var userIntSearch = Console.ReadLine();
             Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
             Console.ReadLine();
-            
         }
         static void Main()
         {
@@ -68,7 +76,9 @@ namespace SearchAndSorts
                     "\n3. Net_3_256.txt" +
                     "\n4. Net_1_2048.txt" +
                     "\n5. Net_2_2048.txt" +
-                    "\n6. Net_3_2048.txt");
+                    "\n6. Net_3_2048.txt" + 
+                    "\n7. Merge Net_1_256 and Net_3_256?" + 
+                    "\n8. Merge Net_1_2048 and Net_3_2048?");
                 var userChoice = Console.ReadLine();
                 switch (userChoice)
                 {
@@ -89,6 +99,14 @@ namespace SearchAndSorts
                         break;
                     case "6":
                         ArrayAnalysis(net6int);
+                        break;
+                    case "7":
+                        int[] mergedArray = MergeArray(net1int, net3int);
+                        ArrayAnalysis(mergedArray);
+                        break;
+                    case "8":
+                        int[] mergedArray2 = MergeArray(net4int, net6int);
+                        ArrayAnalysis(mergedArray2);
                         break;
                     default:
                         Console.WriteLine("Please enter a correct value.");

@@ -103,7 +103,6 @@ namespace SearchAndSorts
                 return result;
             }
         }
-
         /// <summary>
         /// Takes the Left side and the right side array. Compares the two and sorts them accordingly.
         /// </summary>
@@ -251,4 +250,3 @@ namespace SearchAndSorts
         }
     }
 }
-

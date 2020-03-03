@@ -14,11 +14,35 @@ namespace SearchAndSorts
             }
             return mergedArray;
         }
-        public static void ArrayAnalysis(int[] array)
+        public static void ArrayAnalysis(int[] array, string sortChoice)
         {
             Console.Clear();
-            var sortedArrayAsc = Sorts.MergeSort(array, "asc");
-            var sortedArrayDesc = Sorts.MergeSort(array, "desc");
+            int[] sortedArrayAsc;
+            int[] sortedArrayDesc;
+            switch (sortChoice)
+            {
+                case "1":
+                    sortedArrayAsc = Sorts.Bubblesort(array, "asc");
+                    sortedArrayDesc = Sorts.Bubblesort(array, "desc");
+                    break;
+                case "2":
+                    sortedArrayAsc = Sorts.InsertionSort(array, "asc");
+                    sortedArrayDesc = Sorts.InsertionSort(array, "desc");
+                    break;
+                case "3":
+                    sortedArrayAsc = Sorts.MergeSort(array, "asc");
+                    sortedArrayDesc = Sorts.MergeSort(array, "desc");
+                    break;
+                case "4":
+                    sortedArrayAsc = Sorts.PrintTree(array, "asc");
+                    sortedArrayDesc = Sorts.PrintTree(array, "desc");
+                    break;
+                default:
+                    Console.WriteLine("Merge sort by default...");
+                    sortedArrayAsc = Sorts.MergeSort(array, "asc");
+                    sortedArrayDesc = Sorts.MergeSort(array, "desc");
+                    break;
+            }
             Console.WriteLine((array.Length == 2048) ? "Printing every 50th value ascending..." : "printing every 10th value ascending...");
             var intUp = array.Length == 2048 ? 50 : 10;
             for(int i = 0; i <= (10 * (array.Length / 10)); i+=intUp)
@@ -70,6 +94,12 @@ namespace SearchAndSorts
             while (true)
             {
                 Console.Clear();
+                Console.WriteLine("Select sort to use:" +
+                    "\n1. BubbleSort." +
+                    "\n2. InsertionSort" +
+                    "\n3. MergeSort" +
+                    "\n4. BinaryTreeSort");
+                var userSortChoice = Console.ReadLine();
                 Console.WriteLine("Select array to be analysed:" +
                     "\n1. Net_1_256.txt" +
                     "\n2. Net_2_256.txt" +
@@ -83,30 +113,30 @@ namespace SearchAndSorts
                 switch (userArrayChoice)
                 {
                     case "1":
-                        ArrayAnalysis(net1int);
+                        ArrayAnalysis(net1int, userSortChoice);
                         break;
                     case "2":
-                        ArrayAnalysis(net2int);
+                        ArrayAnalysis(net2int, userSortChoice);
                         break;
                     case "3":
-                        ArrayAnalysis(net3int);
+                        ArrayAnalysis(net3int, userSortChoice);
                         break;
                     case "4":
-                        ArrayAnalysis(net4int);
+                        ArrayAnalysis(net4int, userSortChoice);
                         break;
                     case "5":
-                        ArrayAnalysis(net5int);
+                        ArrayAnalysis(net5int, userSortChoice);
                         break;
                     case "6":
-                        ArrayAnalysis(net6int);
+                        ArrayAnalysis(net6int, userSortChoice);
                         break;
                     case "7":
                         int[] mergedArray = MergeArray(net1int, net3int);
-                        ArrayAnalysis(mergedArray);
+                        ArrayAnalysis(mergedArray, userSortChoice);
                         break;
                     case "8":
                         int[] mergedArray2 = MergeArray(net4int, net6int);
-                        ArrayAnalysis(mergedArray2);
+                        ArrayAnalysis(mergedArray2, userSortChoice);
                         break;
                     default:
                         Console.WriteLine("Please enter a correct value.");

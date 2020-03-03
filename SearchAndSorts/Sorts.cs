@@ -15,7 +15,7 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
         public static int[] Bubblesort(int[] x, string ascOrDesc)
         {
-            int[] sortedArray = x;
+            int[] sortedArray = (int[])x.Clone();
             for (int i = 0; i < sortedArray.Length - 1; i++)
             {
                 for (int j = 0; j < sortedArray.Length - 1; j++)
@@ -41,7 +41,7 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
         public static int[] InsertionSort(int[] x, string ascOrDesc)
         {
-            int[] sortedArray = x;
+            int[] sortedArray = (int[])x.Clone();
             int innerCounter = 0;
             int outerCounter = 0;
             for (int i = 1; i < sortedArray.Length; i++)

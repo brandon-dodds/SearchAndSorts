@@ -16,14 +16,10 @@ namespace SearchAndSorts
         public static int[] Bubblesort(int[] x, string ascOrDesc)
         {
             int[] sortedArray = x;
-            int innerCounter = 0;
-            int outerCounter = 0;
             for (int i = 0; i < sortedArray.Length - 1; i++)
             {
-                outerCounter++;
                 for (int j = 0; j < sortedArray.Length - 1; j++)
                 {
-                    innerCounter++;
                     int temp;
                     if (ascOrDesc == "asc" ? sortedArray[j] > sortedArray[j + 1] : sortedArray[j] < sortedArray[j + 1])
                     {
@@ -33,8 +29,6 @@ namespace SearchAndSorts
                     }
                 }
             }
-            //Console.WriteLine($"Bubblesort outer counter: {outerCounter}");
-            //Console.WriteLine($"Bubblesort inner counter: {innerCounter}");
             return sortedArray;
         }
         /// <summary>

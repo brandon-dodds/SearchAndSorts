@@ -79,8 +79,8 @@ namespace SearchAndSorts
                     "\n6. Net_3_2048.txt" + 
                     "\n7. Merge Net_1_256 and Net_3_256?" + 
                     "\n8. Merge Net_1_2048 and Net_3_2048?");
-                var userChoice = Console.ReadLine();
-                switch (userChoice)
+                var userArrayChoice = Console.ReadLine();
+                switch (userArrayChoice)
                 {
                     case "1":
                         ArrayAnalysis(net1int);

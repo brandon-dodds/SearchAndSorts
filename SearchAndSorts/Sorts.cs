@@ -5,6 +5,9 @@ namespace SearchAndSorts
 {
     class Sorts
     {
+        public static int outerCounter = 0;
+        public static int innerCounter = 0;
+        public static int totalCounter = 0;
         /// <summary>
         /// This is a simple bubblesort. 
         /// Each value is compared to the value adjacent.
@@ -18,8 +21,10 @@ namespace SearchAndSorts
             int[] sortedArray = (int[])x.Clone();
             for (int i = 0; i < sortedArray.Length - 1; i++)
             {
+                outerCounter++;
                 for (int j = 0; j < sortedArray.Length - 1; j++)
                 {
+                    innerCounter++;
                     int temp;
                     if (ascOrDesc == "asc" ? sortedArray[j] > sortedArray[j + 1] : sortedArray[j] < sortedArray[j + 1])
                     {
@@ -42,24 +47,18 @@ namespace SearchAndSorts
         public static int[] InsertionSort(int[] x, string ascOrDesc)
         {
             int[] sortedArray = (int[])x.Clone();
-            int innerCounter = 0;
-            int outerCounter = 0;
+
             for (int i = 1; i < sortedArray.Length; i++)
             {
-                outerCounter++;
                 int insertionValue = sortedArray[i];
                 int j = i;
                 while (ascOrDesc == "asc" ? j >= 1 && sortedArray[j - 1] > insertionValue : j >= 1 && sortedArray[j - 1] < insertionValue)
                 {
-                    innerCounter++;
                     sortedArray[j] = sortedArray[j - 1];
                     j--;
                 }
                 sortedArray[j] = insertionValue;
             }
-            Console.WriteLine($"Insertion sort outer counter: {outerCounter}");
-            Console.WriteLine($"Insertion sort inner counter: {innerCounter}");
-            Console.WriteLine($"{sortedArray.Length},{outerCounter},{innerCounter}");
             return sortedArray;
         }
         /// <summary>
@@ -91,6 +90,7 @@ namespace SearchAndSorts
                     rightSide[y] = x[i];
                     y++;
                 }
+
                 leftSide = MergeSort(leftSide, ascOrDesc);
                 rightSide = MergeSort(rightSide, ascOrDesc);
                 int[] result = Merge(leftSide, rightSide, ascOrDesc);

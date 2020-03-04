@@ -23,18 +23,30 @@ namespace SearchAndSorts
             {
                 case "1":
                     sortedArrayAsc = Sorts.Bubblesort(array, "asc");
+                    Sorts.innerCounter = 0;
+                    Sorts.outerCounter = 0;
+                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.Bubblesort(array, "desc");
                     break;
                 case "2":
                     sortedArrayAsc = Sorts.InsertionSort(array, "asc");
+                    Sorts.innerCounter = 0;
+                    Sorts.outerCounter = 0;
+                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.InsertionSort(array, "desc");
                     break;
                 case "3":
                     sortedArrayAsc = Sorts.MergeSort(array, "asc");
+                    Sorts.innerCounter = 0;
+                    Sorts.outerCounter = 0;
+                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.MergeSort(array, "desc");
                     break;
                 case "4":
                     sortedArrayAsc = Sorts.PrintTree(array, "asc");
+                    Sorts.innerCounter = 0;
+                    Sorts.outerCounter = 0;
+                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.PrintTree(array, "desc");
                     break;
                 default:
@@ -63,6 +75,7 @@ namespace SearchAndSorts
             Console.WriteLine("Search for a value:");
             var userIntSearch = Console.ReadLine();
             Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+            Console.WriteLine($"{Sorts.outerCounter},{Sorts.innerCounter}, {Sorts.totalCounter}");
             Console.ReadLine();
         }
         static void Main()

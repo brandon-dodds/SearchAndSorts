@@ -5,6 +5,11 @@ namespace SearchAndSorts
     class Searches
     {
         public static int searchCounter = 0;
+        /// <summary>
+        /// Linear search of the array.
+        /// </summary>
+        /// <param name="array"> Passes in the array. </param>
+        /// <param name="key"> Searches for the key.</param>
         public static void LinearSearch(int[] array, int key)
         {
             int lastClosestDiff = int.MaxValue;
@@ -35,6 +40,11 @@ namespace SearchAndSorts
                 }
             }
         }
+        /// <summary>
+        /// Binary search of the array.
+        /// </summary>
+        /// <param name="array"> Passes in an array. </param>
+        /// <param name="key"> Searches for the key. </param>
         public static void BinarySearch(int[] array, int key)
         {
             int lastClosestDiff = int.MaxValue;

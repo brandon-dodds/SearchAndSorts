@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using System.Collections.Generic;
 
 namespace SearchAndSorts
@@ -7,7 +7,6 @@ namespace SearchAndSorts
     {
         public static int outerCounter = 0;
         public static int innerCounter = 0;
-        public static int totalCounter = 0;
         /// <summary>
         /// This is a simple bubblesort. 
         /// Each value is compared to the value adjacent.
@@ -17,7 +16,7 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> To tell the prog if you want to asc or desc </param>
         public static int[] Bubblesort(int[] x, string ascOrDesc)
         {
-            int[] sortedArray = (int[])x.Clone();
+            int[] sortedArray = x.ToArray();
             for (int i = 0; i < sortedArray.Length - 1; i++)
             {
                 outerCounter++;
@@ -44,14 +43,16 @@ namespace SearchAndSorts
         /// <param name="ascOrDesc"> If the user wants ascending or descending order.</param>
         public static int[] InsertionSort(int[] x, string ascOrDesc)
         {
-            int[] sortedArray = (int[])x.Clone();
+            int[] sortedArray = x.ToArray();
 
             for (int i = 1; i < sortedArray.Length; i++)
             {
+                outerCounter++;
                 int insertionValue = sortedArray[i];
                 int j = i;
                 while (ascOrDesc == "asc" ? j >= 1 && sortedArray[j - 1] > insertionValue : j >= 1 && sortedArray[j - 1] < insertionValue)
                 {
+                    innerCounter++;
                     sortedArray[j] = sortedArray[j - 1];
                     j--;
                 }
@@ -108,8 +109,10 @@ namespace SearchAndSorts
             int indexLeft = 0;
             int indexRight = 0;
             int indexResult = 0;
+            outerCounter++;
             while (indexLeft < leftSide.Length || indexRight < rightSide.Length)
             {
+                innerCounter++;
                 // If the left and right indexes are still not at length, comparisons can be made between the two.
                 if (indexLeft < leftSide.Length && indexRight < rightSide.Length)
                 {
@@ -178,12 +181,14 @@ namespace SearchAndSorts
             Node<int> firstNode = new Node<int>(x[0]);
             Node<int> currentNode;
             int start = 1;
+            outerCounter++;
             while (start < x.Length)
             {
                 currentNode = firstNode;
                 bool inserted = false;
                 while (inserted == false)
                 {
+                    innerCounter++;
                     if (x[start] > currentNode.Value && currentNode.Right == null)
                     {
                         currentNode.Right = new Node<int>(x[start])

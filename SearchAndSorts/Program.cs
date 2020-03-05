@@ -4,6 +4,12 @@ namespace SearchAndSorts
 {
     class Program
     {
+        /// <summary>
+        /// This is a function that allows two arrays to be passed in, and for them to be combined.
+        /// </summary>
+        /// <param name="array1"> The first array to merge. </param>
+        /// <param name="array2"> The second array to merge. </param>
+        /// <returns> Returns the merged array. </returns>
         public static int[] MergeArray(int[] array1, int[] array2)
         {
             int[] mergedArray = new int[2 * array1.Length];
@@ -14,6 +20,11 @@ namespace SearchAndSorts
             }
             return mergedArray;
         }
+        /// <summary>
+        /// Array analysis for the array passed in. 
+        /// </summary>
+        /// <param name="array"> The array to analyse. </param>
+        /// <param name="sortChoice"> The sort chosed. </param>
         public static void ArrayAnalysis(int[] array, string sortChoice)
         {
             Console.Clear();
@@ -25,28 +36,24 @@ namespace SearchAndSorts
                     sortedArrayAsc = Sorts.Bubblesort(array, "asc");
                     Sorts.innerCounter = 0;
                     Sorts.outerCounter = 0;
-                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.Bubblesort(array, "desc");
                     break;
                 case "2":
                     sortedArrayAsc = Sorts.InsertionSort(array, "asc");
                     Sorts.innerCounter = 0;
                     Sorts.outerCounter = 0;
-                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.InsertionSort(array, "desc");
                     break;
                 case "3":
                     sortedArrayAsc = Sorts.MergeSort(array, "asc");
                     Sorts.innerCounter = 0;
                     Sorts.outerCounter = 0;
-                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.MergeSort(array, "desc");
                     break;
                 case "4":
                     sortedArrayAsc = Sorts.PrintTree(array, "asc");
                     Sorts.innerCounter = 0;
                     Sorts.outerCounter = 0;
-                    Sorts.totalCounter = 0;
                     sortedArrayDesc = Sorts.PrintTree(array, "desc");
                     break;
                 default:
@@ -75,11 +82,12 @@ namespace SearchAndSorts
             Console.WriteLine("Search for a value:");
             var userIntSearch = Console.ReadLine();
             Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
-            Console.WriteLine($"{Sorts.outerCounter},{Sorts.innerCounter}, {Sorts.totalCounter}");
+            Console.WriteLine($"{Sorts.outerCounter},{Sorts.innerCounter}");
             Console.ReadLine();
         }
         static void Main()
         {
+            // Parsing the text files.
             var net1String = File.ReadAllLines("Net_1_256.txt");
             var net2String = File.ReadAllLines("Net_2_256.txt");
             var net3String = File.ReadAllLines("Net_3_256.txt");
@@ -104,6 +112,7 @@ namespace SearchAndSorts
                 net5int[i] = int.Parse(net5String[i]);
                 net6int[i] = int.Parse(net6String[i]);
             }
+            // Start of the user input.
             while (true)
             {
                 Console.Clear();
@@ -123,6 +132,7 @@ namespace SearchAndSorts
                     "\n7. Merge Net_1_256 and Net_3_256?" + 
                     "\n8. Merge Net_1_2048 and Net_3_2048?");
                 var userArrayChoice = Console.ReadLine();
+                //Switching in specific values.
                 switch (userArrayChoice)
                 {
                     case "1":
@@ -144,10 +154,12 @@ namespace SearchAndSorts
                         ArrayAnalysis(net6int, userSortChoice);
                         break;
                     case "7":
+                        // Calling the MergeArray method.
                         int[] mergedArray = MergeArray(net1int, net3int);
                         ArrayAnalysis(mergedArray, userSortChoice);
                         break;
                     case "8":
+                        // Calling the MergeArray
                         int[] mergedArray2 = MergeArray(net4int, net6int);
                         ArrayAnalysis(mergedArray2, userSortChoice);
                         break;

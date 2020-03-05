@@ -4,12 +4,14 @@ namespace SearchAndSorts
 {
     class Searches
     {
+        public static int searchCounter = 0;
         public static void LinearSearch(int[] array, int key)
         {
             int lastClosestDiff = int.MaxValue;
             bool valueFound = false;
             for(int i = 0; i < array.Length; i++)
             {
+                searchCounter++;
                 int diff = array[i] - key;
                 if (Math.Abs(diff) < lastClosestDiff)
                 {
@@ -41,6 +43,7 @@ namespace SearchAndSorts
             bool found = false;
             while (high >= low)
             {
+                searchCounter++;
                 int midpoint = (low + high) / 2;
                 int diff = array[midpoint] - key;
                 if (Math.Abs(diff) < lastClosestDiff)

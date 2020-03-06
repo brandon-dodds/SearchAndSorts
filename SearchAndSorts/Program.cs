@@ -25,7 +25,7 @@ namespace SearchAndSorts
         /// </summary>
         /// <param name="array"> The array to analyse. </param>
         /// <param name="sortChoice"> The sort chosed. </param>
-        public static void ArrayAnalysis(int[] array, string sortChoice)
+        public static void ArrayAnalysis(int[] array, string sortChoice, string searchChoice)
         {
             Console.Clear();
             int[] sortedArrayAsc;
@@ -81,7 +81,16 @@ namespace SearchAndSorts
             Console.Clear();
             Console.WriteLine("Search for a value:");
             var userIntSearch = Console.ReadLine();
-            Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+            Searches.searchCounter = 0;
+            switch (searchChoice)
+            {
+                case "1":
+                    Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+                    break;
+                case "2":
+                    Searches.LinearSearch(sortedArrayAsc, int.Parse(userIntSearch));
+                    break;
+            }
             Console.WriteLine($"{Sorts.outerCounter},{Sorts.innerCounter}");
             Console.WriteLine($"{Searches.searchCounter}");
             Console.ReadLine();
@@ -133,36 +142,40 @@ namespace SearchAndSorts
                     "\n7. Merge Net_1_256 and Net_3_256?" + 
                     "\n8. Merge Net_1_2048 and Net_3_2048?");
                 var userArrayChoice = Console.ReadLine();
+                Console.WriteLine("Select sort to use:" +
+                    "\n1. Binary Search." +
+                    "\n2. Linear Search");
+                var userSearchChoice = Console.ReadLine();
                 //Switching in specific values.
                 switch (userArrayChoice)
                 {
                     case "1":
-                        ArrayAnalysis(net1int, userSortChoice);
+                        ArrayAnalysis(net1int, userSortChoice, userSearchChoice);
                         break;
                     case "2":
-                        ArrayAnalysis(net2int, userSortChoice);
+                        ArrayAnalysis(net2int, userSortChoice, userSearchChoice);
                         break;
                     case "3":
-                        ArrayAnalysis(net3int, userSortChoice);
+                        ArrayAnalysis(net3int, userSortChoice, userSearchChoice);
                         break;
                     case "4":
-                        ArrayAnalysis(net4int, userSortChoice);
+                        ArrayAnalysis(net4int, userSortChoice, userSearchChoice);
                         break;
                     case "5":
-                        ArrayAnalysis(net5int, userSortChoice);
+                        ArrayAnalysis(net5int, userSortChoice, userSearchChoice);
                         break;
                     case "6":
-                        ArrayAnalysis(net6int, userSortChoice);
+                        ArrayAnalysis(net6int, userSortChoice, userSearchChoice);
                         break;
                     case "7":
                         // Calling the MergeArray method.
                         int[] mergedArray = MergeArray(net1int, net3int);
-                        ArrayAnalysis(mergedArray, userSortChoice);
+                        ArrayAnalysis(mergedArray, userSortChoice, userSearchChoice);
                         break;
                     case "8":
                         // Calling the MergeArray
                         int[] mergedArray2 = MergeArray(net4int, net6int);
-                        ArrayAnalysis(mergedArray2, userSortChoice);
+                        ArrayAnalysis(mergedArray2, userSortChoice, userSearchChoice);
                         break;
                     default:
                         Console.WriteLine("Please enter a correct value.");

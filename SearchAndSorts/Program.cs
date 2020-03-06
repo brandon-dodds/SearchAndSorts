@@ -93,6 +93,9 @@ namespace SearchAndSorts
             }
             Console.WriteLine($"{Sorts.outerCounter},{Sorts.innerCounter}");
             Console.WriteLine($"{Searches.searchCounter}");
+            Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+            Console.WriteLine($"Sort outer counter: {Sorts.outerCounter} Sort inner counter: {Sorts.innerCounter}");
+            Console.WriteLine($"Search inner counter: {Searches.searchCounter}");
             Console.ReadLine();
         }
         static void Main()

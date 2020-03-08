@@ -14,6 +14,7 @@ namespace SearchAndSorts
         {
             int lastClosestDiff = int.MaxValue;
             bool valueFound = false;
+            // Searches every element of the array O(N).
             for(int i = 0; i < array.Length; i++)
             {
                 searchCounter++;
@@ -28,6 +29,7 @@ namespace SearchAndSorts
                     valueFound = true;
                 }
             }
+            // If the value was not found, the array is checked for the closest value.
             if (!valueFound)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -47,6 +49,7 @@ namespace SearchAndSorts
         /// <param name="key"> Searches for the key. </param>
         public static void BinarySearch(int[] array, int key)
         {
+            // These variables are designed as the low, high and last closest difference.
             int lastClosestDiff = int.MaxValue;
             int low = 0;
             int high = array.Length - 1;

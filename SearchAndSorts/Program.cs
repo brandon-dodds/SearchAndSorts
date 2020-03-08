@@ -79,16 +79,26 @@ namespace SearchAndSorts
             Console.WriteLine("Press a button to continue...");
             Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("Search for a value:");
-            var userIntSearch = Console.ReadLine();
+            var validatedInput = false;
+            int outUserIntSearch = 0;
+            while (!validatedInput)
+            {
+                Console.WriteLine("Search for a value:");
+                var userIntSearch = Console.ReadLine();
+                validatedInput = int.TryParse(userIntSearch, out outUserIntSearch);
+            }
             Searches.searchCounter = 0;
             switch (searchChoice)
             {
                 case "1":
-                    Searches.BinarySearch(sortedArrayAsc, int.Parse(userIntSearch));
+                    Searches.BinarySearch(sortedArrayAsc, outUserIntSearch);
                     break;
                 case "2":
-                    Searches.LinearSearch(sortedArrayAsc, int.Parse(userIntSearch));
+                    Searches.LinearSearch(sortedArrayAsc, outUserIntSearch);
+                    break;
+                default:
+                    Console.WriteLine("Using Binary Search by default...");
+                    Searches.LinearSearch(sortedArrayAsc, outUserIntSearch);
                     break;
             }
             Console.WriteLine($"Sort outer counter: {Sorts.outerCounter} Sort inner counter: {Sorts.innerCounter}");
@@ -178,6 +188,7 @@ namespace SearchAndSorts
                         ArrayAnalysis(mergedArray2, userSortChoice, userSearchChoice);
                         break;
                     default:
+                        //If you haven't selected an array, the loop still happens.
                         Console.WriteLine("Please enter a correct value.");
                         Console.ReadKey();
                         break;
